@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import SectionTytle from "../../../Shared/SectionTytle/SectionTytle";
 import SharedMenu from "../../../Shared/SharedMenu/SharedMenu";
+import useMenu from "../../../../hooks/useMenu";
 
 const MenuItems = () => {
-  const [menu, setMenu] = useState([]);
-  useEffect(() => {
-    fetch("menues.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const popularItems = data.filter((item) => item.category === "popular");
-        setMenu(popularItems);
-      });
-  }, []);
+  const [menu] = useMenu()
+  const popularMenu = menu.filter(item => item.category === 'popular')
   return (
     <section className="mb-16">
       <SectionTytle
@@ -19,7 +13,7 @@ const MenuItems = () => {
         subHeading="Check it Out"
       ></SectionTytle>
       <div className="grid md:grid-cols-2 gap-6 p-8 md:p-0">
-        {menu.map((item) => (
+        {popularMenu.map((item) => (
           <SharedMenu key={item._id} item={item}></SharedMenu>
         ))}
       </div>
