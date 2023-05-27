@@ -2,6 +2,7 @@ import React from "react";
 import Cover from "../Cover/Cover";
 import SectionTytle from "../SectionTytle/SectionTytle";
 import SharedMenu from "../SharedMenu/SharedMenu";
+import { Link } from "react-router-dom";
 
 const MenusByCatagory = ({
   heading,
@@ -10,7 +11,8 @@ const MenusByCatagory = ({
   bgImage,
   title,
   subtitle,
-  btnText
+  btnText,
+  category,
 }) => {
   return (
     <div>
@@ -24,9 +26,11 @@ const MenusByCatagory = ({
         ))}
       </div>
       <div className="flex justify-center mb-16">
-        <button className="btn btn-outline border-0 border-b-2 text-black text-center mt-12">
-          {btnText}
-        </button>
+        <Link to={`/foods/${category ? category : "salad"}`}>
+          <button className="btn btn-outline border-0 border-b-2 text-black text-center mt-12">
+            {btnText}
+          </button>
+        </Link>
       </div>
     </div>
   );
