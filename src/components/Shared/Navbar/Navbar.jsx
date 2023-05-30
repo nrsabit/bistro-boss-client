@@ -35,6 +35,9 @@ const Navbar = () => {
             <li>
               <NavLink to="/foods/salad">Our Foods</NavLink>
             </li>
+            <li>
+              <NavLink to="/login">Login</NavLink>
+            </li>
           </ul>
         </div>
         <a className="btn btn-ghost normal-case text-xl">Bistro Boss</a>
@@ -50,6 +53,9 @@ const Navbar = () => {
           <li>
             <NavLink to="/foods/salad">Our Foods</NavLink>
           </li>
+          <li>
+              <NavLink to="/login">Login</NavLink>
+            </li>
         </ul>
       </div>
       <div className="navbar-end">

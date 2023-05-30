@@ -31,7 +31,7 @@ const Foods = () => {
       <Tabs
         selectedIndex={tabIndex}
         onSelect={(index) => setTabIndex(index)}
-        className="my-16"
+        className="my-16 text-center"
       >
         <TabList>
           <Tab>Salads</Tab>
