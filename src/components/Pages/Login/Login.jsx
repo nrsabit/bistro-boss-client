@@ -5,19 +5,37 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import loginImg from '../../../assets/others/authentication2.png'
-import { Link } from "react-router-dom";
+import loginImg from "../../../assets/others/authentication2.png";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const {logIn} = useContext(AuthContext)
+  const { logIn } = useContext(AuthContext);
   const [invalid, setInvalid] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const url = location?.state?.from?.pathname || "/";
+
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     logIn(email, password)
+      .then((res) => {
+        Swal.fire({
+          title: "Login Successful",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+        navigate(url, { replace: true });
+      })
+      .catch((error) => console.log(error.message));
   };
 
   const handleValidateCaptcha = (event) => {
@@ -47,7 +65,7 @@ const Login = () => {
           <form onSubmit={handleLogin}>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text font-bold">Email</span>
               </label>
               <input
                 type="text"
@@ -58,7 +76,7 @@ const Login = () => {
             </div>
             <div className="form-control mb-2">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text font-bold">Password</span>
               </label>
               <input
                 type="password"
@@ -92,7 +110,12 @@ const Login = () => {
               />
             </div>
           </form>
-          <p className="text-center text-[#D1A054] mt-4">New here? <Link to="/register"><span className="font-bold">Create a New Account</span></Link> </p>
+          <p className="text-center text-[#D1A054] mt-4">
+            New here?{" "}
+            <Link to="/register">
+              <span className="font-bold">Create a New Account</span>
+            </Link>{" "}
+          </p>
         </div>
       </div>
     </div>

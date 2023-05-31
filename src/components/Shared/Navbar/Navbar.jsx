@@ -1,7 +1,14 @@
 import React from "react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut().then((res) => Swal.fire("Log Out Successful"));
+  };
   return (
     <div className="navbar bg-black fixed z-10 max-w-7xl bg-opacity-40 text-white">
       <div className="navbar-start">
@@ -35,9 +42,15 @@ const Navbar = () => {
             <li>
               <NavLink to="/foods/salad">Our Foods</NavLink>
             </li>
-            <li>
-              <NavLink to="/login">Login</NavLink>
-            </li>
+            {user ? (
+              <button onClick={handleLogOut} className="btn btn-ghost">
+                Log Out
+              </button>
+            ) : (
+              <li>
+                <NavLink to="/login">Login</NavLink>
+              </li>
+            )}
           </ul>
         </div>
         <a className="btn btn-ghost normal-case text-xl">Bistro Boss</a>
@@ -53,9 +66,15 @@ const Navbar = () => {
           <li>
             <NavLink to="/foods/salad">Our Foods</NavLink>
           </li>
-          <li>
+          {user ? (
+            <button onClick={handleLogOut} className="btn btn-ghost">
+              Log Out
+            </button>
+          ) : (
+            <li>
               <NavLink to="/login">Login</NavLink>
             </li>
+          )}
         </ul>
       </div>
       <div className="navbar-end">
