@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaShoppingCart } from "react-icons/fa";
@@ -8,7 +8,7 @@ import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [cart] = useCart()
+  const [cart] = useCart();
   const handleLogOut = () => {
     logOut().then((res) => Swal.fire("Log Out Successful"));
   };
@@ -37,21 +37,21 @@ const Navbar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <Link to="/menu">Our Menu</Link>
+              <NavLink to="/menu">Our Menu</NavLink>
             </li>
             <li>
-              <Link to="/foods/salad">Our Foods</Link>
+              <NavLink to="/foods/salad">Our Foods</NavLink>
             </li>
             <li>
-              <Link to="/">
+              <NavLink to="/dashboard/my-cart">
                 <button className="btn gap-2 btn-ghost">
                   <FaShoppingCart></FaShoppingCart>
                   <div className="badge badge-secondary">+{cart.length}</div>
                 </button>
-              </Link>
+              </NavLink>
             </li>
             {user ? (
               <button onClick={handleLogOut} className="btn btn-ghost">
@@ -59,7 +59,7 @@ const Navbar = () => {
               </button>
             ) : (
               <li>
-                <Link to="/login">Login</Link>
+                <NavLink to="/login">Login</NavLink>
               </li>
             )}
           </ul>
@@ -69,27 +69,27 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/menu">Our Menu</Link>
+            <NavLink to="/menu">Our Menu</NavLink>
           </li>
           <li>
-            <Link to="/foods/salad">Our Foods</Link>
+            <NavLink to="/foods/salad">Our Foods</NavLink>
           </li>
-          <Link to="/">
+          <NavLink to="/dashboard/my-cart">
             <button className="btn gap-2 btn-ghost">
               <FaShoppingCart></FaShoppingCart>
               <div className="badge badge-secondary">+{cart.length}</div>
             </button>
-          </Link>
+          </NavLink>
           {user ? (
             <button onClick={handleLogOut} className="btn btn-ghost">
               Log Out
             </button>
           ) : (
             <li>
-              <Link to="/login">Login</Link>
+              <NavLink to="/login">Login</NavLink>
             </li>
           )}
         </ul>

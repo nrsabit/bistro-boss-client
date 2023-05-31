@@ -5,34 +5,46 @@ import Menu from "../Pages/Menu/Menu/Menu";
 import Foods from "../Pages/Foods/Foods/Foods";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import DashBoard from "../Layouts/DashBoard/DashBoard";
+import MyCart from "../Pages/Dashboard/MyCart/MyCart";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
     children: [
-        {
-            path: '/',
-            element: <Home></Home>
-        },
-        {
-          path: 'menu',
-          element: <Menu></Menu>
-        },
-        {
-          path: 'foods/:category',
-          element: <Foods></Foods>
-        },
-        {
-          path: 'login',
-          element: <Login></Login>
-        },
-        {
-          path: 'register',
-          element: <Register></Register>
-        }
-    ]
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "menu",
+        element: <Menu></Menu>,
+      },
+      {
+        path: "foods/:category",
+        element: <Foods></Foods>,
+      },
+      {
+        path: "login",
+        element: <Login></Login>,
+      },
+      {
+        path: "register",
+        element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashBoard></DashBoard>,
+    children: [
+      {
+        path: "my-cart",
+        element: <MyCart></MyCart>,
+      },
+    ],
   },
 ]);
 
-export default router
+export default router;
