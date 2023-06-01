@@ -42,7 +42,7 @@ const SocialLogin = () => {
               timer: 1500,
             });
           }
-          navigate(url)
+          navigate(url);
         });
     });
   };
@@ -51,7 +51,10 @@ const SocialLogin = () => {
     <div>
       <div className="divider"></div>
       <div className="text-center">
-        <button onClick={handleGoogleSignIn} className="btn btn-circle">
+        <button
+          onClick={handleGoogleSignIn}
+          className="btn btn-circle bg-[#D1A054] border-0 bg-opacity-70"
+        >
           <FaGoogle></FaGoogle>
         </button>
       </div>

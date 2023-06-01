@@ -47,13 +47,13 @@ const MyCart = () => {
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           {/* head */}
-          <thead>
+          <thead className="bg-[#D1A054] bg-opacity-70">
             <tr>
-              <th>#</th>
-              <th>Food Image</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Action</th>
+              <th className="bg-transparent">#</th>
+              <th className="bg-transparent">Food Image</th>
+              <th className="bg-transparent">Name</th>
+              <th className="bg-transparent">Price</th>
+              <th className="bg-transparent">Action</th>
             </tr>
           </thead>
           <tbody>

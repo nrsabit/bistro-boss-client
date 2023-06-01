@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import DashBoard from "../Layouts/DashBoard/DashBoard";
 import MyCart from "../Pages/Dashboard/MyCart/MyCart";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "my-cart",
         element: <MyCart></MyCart>,
+      },
+      {
+        path: "all-users",
+        element: <AllUsers></AllUsers>,
       },
     ],
   },
