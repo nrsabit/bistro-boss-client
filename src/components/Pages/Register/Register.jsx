@@ -6,28 +6,43 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const Register = () => {
   const { signUp, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    const newUser = { email: data.email, name: data.name };
     signUp(data.email, data.password).then((res) => {
       updateUserProfile(data.name, data.photo).then(() => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Your work has been saved",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/");
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Successfully Registered",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
+          });
       });
     });
   };
@@ -68,11 +83,11 @@ const Register = () => {
                 type="text"
                 {...register("photo", { required: true })}
                 placeholder="Type Photo URL"
-                name="name"
+                name="photo"
                 className="input input-bordered"
               />
               {errors.photo?.type === "required" && (
-                <p className="text-red-500 mt-2">Name is required</p>
+                <p className="text-red-500 mt-2">Photo is required</p>
               )}
               <p className="text-red-500">{errors.exam}</p>
             </div>
@@ -135,6 +150,7 @@ const Register = () => {
               <span className="font-bold">Go to log in</span>
             </Link>
           </p>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>

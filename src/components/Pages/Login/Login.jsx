@@ -9,6 +9,7 @@ import loginImg from "../../../assets/others/authentication2.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { logIn } = useContext(AuthContext);
@@ -116,6 +117,7 @@ const Login = () => {
               <span className="font-bold">Create a New Account</span>
             </Link>{" "}
           </p>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>
