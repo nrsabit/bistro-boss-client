@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
@@ -8,9 +8,10 @@ import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [cart] = useCart();
+  const [cart] = useCart()
+
   const handleLogOut = () => {
-    logOut().then((res) => Swal.fire("Log Out Successful"));
+    logOut().then(() => Swal.fire("Log Out Successful"));
   };
   return (
     <div className="navbar bg-black fixed z-10 max-w-7xl bg-opacity-40 text-white">
@@ -49,7 +50,9 @@ const Navbar = () => {
               <NavLink to="/dashboard/my-cart">
                 <button className="btn gap-2 btn-ghost">
                   <FaShoppingCart></FaShoppingCart>
-                  <div className="badge badge-secondary">+{cart.length}</div>
+                  <div className="badge badge-secondary">
+                    +{cart.length}
+                  </div>
                 </button>
               </NavLink>
             </li>

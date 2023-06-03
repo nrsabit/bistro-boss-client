@@ -7,10 +7,11 @@ import { GiWallet } from "react-icons/gi";
 import { BsCartFill } from "react-icons/bs";
 import { MdFastfood, MdMenuBook, MdMenuOpen } from "react-icons/md";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
 const DashBoard = () => {
   const [cart] = useCart();
-  const isAdmin = true;
+  const [isAdmin] = useAdmin()
   return (
     <div className="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />

@@ -5,8 +5,9 @@ import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const MyCart = () => {
-  const [cart, refetch] = useCart();
-  const total = cart.reduce((sum, item) => item.price + sum, 0);
+  const [cart = [], refetch] = useCart();
+  const total =
+    cart.length > 0 ? cart.reduce((sum, item) => item.price + sum, 0) : 0;
   const handleDelete = (item) => {
     Swal.fire({
       title: "Are you sure?",
@@ -57,28 +58,32 @@ const MyCart = () => {
             </tr>
           </thead>
           <tbody>
-            {cart.map((item, index) => (
-              <tr key={item._id}>
-                <th>{index + 1}</th>
-                <td>
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img src={item.image} alt="Food Image" />
+            {cart.length > 0 ? (
+              cart?.map((item, index) => (
+                <tr key={item._id}>
+                  <th>{index + 1}</th>
+                  <td>
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img src={item.image} alt="Food Image" />
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td>{item.name}</td>
-                <td>${item.price}</td>
-                <th>
-                  <button
-                    onClick={() => handleDelete(item)}
-                    className="btn btn-ghost bg-red-600 text-white btn-xs"
-                  >
-                    <FaTrashAlt></FaTrashAlt>{" "}
-                  </button>
-                </th>
-              </tr>
-            ))}
+                  </td>
+                  <td>{item.name}</td>
+                  <td>${item.price}</td>
+                  <th>
+                    <button
+                      onClick={() => handleDelete(item)}
+                      className="btn btn-ghost bg-red-600 text-white btn-xs"
+                    >
+                      <FaTrashAlt></FaTrashAlt>{" "}
+                    </button>
+                  </th>
+                </tr>
+              ))
+            ) : (
+              <></>
+            )}
           </tbody>
         </table>
       </div>
