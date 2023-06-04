@@ -5,10 +5,12 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [cart] = useCart()
+  const [isAdmin] = useAdmin();
+  const [cart] = useCart();
 
   const handleLogOut = () => {
     logOut().then(() => Swal.fire("Log Out Successful"));
@@ -47,12 +49,12 @@ const Navbar = () => {
               <NavLink to="/foods/salad">Our Foods</NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/my-cart">
+              <NavLink
+                to={isAdmin ? "/dashboard/all-users" : "/dashboard/my-cart"}
+              >
                 <button className="btn gap-2 btn-ghost">
                   <FaShoppingCart></FaShoppingCart>
-                  <div className="badge badge-secondary">
-                    +{cart.length}
-                  </div>
+                  <div className="badge badge-secondary">+{cart.length}</div>
                 </button>
               </NavLink>
             </li>
@@ -80,7 +82,7 @@ const Navbar = () => {
           <li>
             <NavLink to="/foods/salad">Our Foods</NavLink>
           </li>
-          <NavLink to="/dashboard/my-cart">
+          <NavLink to={isAdmin ? "/dashboard/all-users" : "/dashboard/my-cart"}>
             <button className="btn gap-2 btn-ghost">
               <FaShoppingCart></FaShoppingCart>
               <div className="badge badge-secondary">+{cart.length}</div>

@@ -11,17 +11,17 @@ import useAdmin from "../../../hooks/useAdmin";
 
 const DashBoard = () => {
   const [cart] = useCart();
-  const [isAdmin] = useAdmin()
+  const [isAdmin] = useAdmin();
   return (
     <div className="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center justify-center">
+      <div className="drawer-content">
         <Outlet></Outlet>
         <label
           htmlFor="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
+          className="btn btn-sm my-4 text-center drawer-button lg:hidden"
         >
-          Open drawer
+          Open Menu
         </label>
       </div>
       <div className="drawer-side">
@@ -36,8 +36,8 @@ const DashBoard = () => {
                 </NavLink>
               </li>
               <li className="uppercase">
-                <NavLink to="/dashboard/add-items">
-                  <FaUtensils></FaUtensils>Add Items
+                <NavLink to="/dashboard/add-item">
+                  <FaUtensils></FaUtensils>Add Item
                 </NavLink>
               </li>
               <li className="uppercase">
