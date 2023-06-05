@@ -49,6 +49,16 @@ const Navbar = () => {
               <NavLink to="/foods/salad">Our Foods</NavLink>
             </li>
             <li>
+              {isAdmin ? (
+                <NavLink to="/dashboard/all-users"> Dashboard</NavLink>
+              ) : (
+                <NavLink to="/dashboard/my-cart">
+                  <button className="btn gap-2 btn-ghost">
+                    <FaShoppingCart></FaShoppingCart>
+                    <div className="badge badge-secondary">+{cart.length}</div>
+                  </button>
+                </NavLink>
+              )}
               <NavLink
                 to={isAdmin ? "/dashboard/all-users" : "/dashboard/my-cart"}
               >

@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet-async";
 import useCart from "../../../../hooks/useCart";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import SectionTytle from "../../../Shared/SectionTytle/SectionTytle";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart = [], refetch] = useCart();
@@ -38,12 +40,19 @@ const MyCart = () => {
       <Helmet>
         <title>Bistro Boss | My Cart</title>
       </Helmet>
+      <SectionTytle
+        subHeading="My Cart"
+        heading="Wanna Add More?"
+        className="mt-6"
+      ></SectionTytle>
       <div className="uppercase flex justify-between items-center gap-8 font-semibold mb-8">
         <h3 className="text-3xl">Total Items: {cart.length}</h3>
-        <h3 className="text-3xl">Total Price: ${total}</h3>
-        <button className="btn bg-[#D1A054] text-white btn-sm border-0">
-          Pay
-        </button>
+        <h3 className="text-3xl">Total Price: ${total.toFixed(2)}</h3>
+        <Link to="/dashboard/payment">
+          <button className="btn bg-[#D1A054] text-white btn-sm border-0">
+            Pay
+          </button>
+        </Link>
       </div>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">

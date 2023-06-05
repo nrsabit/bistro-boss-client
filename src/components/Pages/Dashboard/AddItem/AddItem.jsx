@@ -57,6 +57,7 @@ const AddItem = () => {
       <SectionTytle
         subHeading="What's new?"
         heading="Add an Item"
+        className="mt-6"
       ></SectionTytle>
       <form
         className="bg-base-200 px-8 py-6 rounded"
