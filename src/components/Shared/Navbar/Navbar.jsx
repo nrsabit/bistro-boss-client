@@ -49,24 +49,23 @@ const Navbar = () => {
               <NavLink to="/foods/salad">Our Foods</NavLink>
             </li>
             <li>
-              {isAdmin ? (
-                <NavLink to="/dashboard/all-users"> Dashboard</NavLink>
-              ) : (
+              <NavLink
+                to={isAdmin ? "/dashboard/admin-home" : "/dashboard/user-home"}
+              >
+                Dashboard
+              </NavLink>
+            </li>
+            <li>
+              {!isAdmin ? (
                 <NavLink to="/dashboard/my-cart">
                   <button className="btn gap-2 btn-ghost">
                     <FaShoppingCart></FaShoppingCart>
                     <div className="badge badge-secondary">+{cart.length}</div>
                   </button>
                 </NavLink>
+              ) : (
+                ""
               )}
-              <NavLink
-                to={isAdmin ? "/dashboard/all-users" : "/dashboard/my-cart"}
-              >
-                <button className="btn gap-2 btn-ghost">
-                  <FaShoppingCart></FaShoppingCart>
-                  <div className="badge badge-secondary">+{cart.length}</div>
-                </button>
-              </NavLink>
             </li>
             {user ? (
               <button onClick={handleLogOut} className="btn btn-ghost">
@@ -82,7 +81,7 @@ const Navbar = () => {
         <a className="btn btn-ghost normal-case text-xl">Bistro Boss</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal items-center px-1">
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
@@ -92,12 +91,25 @@ const Navbar = () => {
           <li>
             <NavLink to="/foods/salad">Our Foods</NavLink>
           </li>
-          <NavLink to={isAdmin ? "/dashboard/all-users" : "/dashboard/my-cart"}>
-            <button className="btn gap-2 btn-ghost">
-              <FaShoppingCart></FaShoppingCart>
-              <div className="badge badge-secondary">+{cart.length}</div>
-            </button>
-          </NavLink>
+          <li>
+            <NavLink
+              to={isAdmin ? "/dashboard/admin-home" : "/dashboard/user-home"}
+            >
+              Dashboard
+            </NavLink>
+          </li>
+          <li>
+            {!isAdmin ? (
+              <NavLink to="/dashboard/my-cart">
+                <button className="btn gap-2 btn-ghost">
+                  <FaShoppingCart></FaShoppingCart>
+                  <div className="badge badge-secondary">+{cart.length}</div>
+                </button>
+              </NavLink>
+            ) : (
+              ""
+            )}
+          </li>
           {user ? (
             <button onClick={handleLogOut} className="btn btn-ghost">
               Log Out
