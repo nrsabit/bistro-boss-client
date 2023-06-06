@@ -16,7 +16,7 @@ const SocialLogin = () => {
         name: data.user.displayName,
         email: data.user.email,
       };
-      fetch("http://localhost:5000/users", {
+      fetch("https://bistro-boss-server-kohl.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",

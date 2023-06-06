@@ -22,7 +22,7 @@ const Register = () => {
     const newUser = { email: data.email, name: data.name };
     signUp(data.email, data.password).then((res) => {
       updateUserProfile(data.name, data.photo).then(() => {
-        fetch("http://localhost:5000/users", {
+        fetch("https://bistro-boss-server-kohl.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

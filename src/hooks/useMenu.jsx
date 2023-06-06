@@ -4,7 +4,7 @@ const useMenu = () => {
   const { data: menu = [], isLoading: loader, refetch } = useQuery({
     queryKey: ["menus"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/menus");
+      const res = await fetch("https://bistro-boss-server-kohl.vercel.app/menus");
       return res.json();
     },
   });
